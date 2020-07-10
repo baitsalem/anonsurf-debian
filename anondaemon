@@ -83,7 +83,10 @@ function enableService {
 
 
 function start {
-	/usr/sbin/service tor start
+	
+	/usr/bin/tor --defaults-torrc /usr/share/tor/tor-service-defaults-torrc -f /etc/tor/torrc --RunAsDaemon 0 &
+	echo "tor was started"
+	#/usr/sbin/service tor start
 	sleep 3
 
 	if ! [ -f /etc/network/iptables.rules ]; then
@@ -158,8 +161,9 @@ function stop {
 	/sbin/sysctl -w net.ipv6.conf.all.disable_ipv6=0
 	/sbin/sysctl -w net.ipv6.conf.default.disable_ipv6=0
 
-	/usr/sbin/service tor stop
-	sleep 1
+	
+	#/usr/sbin/service tor stop
+	#sleep 1
 	killall tor
 	sleep 1
 }
