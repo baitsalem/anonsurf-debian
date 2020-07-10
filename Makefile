@@ -27,4 +27,4 @@ install:
 	chown root:root $(DESTDIR)/etc/anonsurf -R
 	chmod 644 $(DESTDIR)/etc/anonsurf -R
 	chmod 775 $(DESTDIR)/etc/anonsurf/anondaemon
-	touch /etc/anonsurf/conky_mesg
+	touch /etc/anonsurf/conky_msg
