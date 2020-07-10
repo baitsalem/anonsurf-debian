@@ -78,21 +78,25 @@ function checkuid {
 
 function start {
 
+	echo "" > /etc/anonsurf/conky_msg
+
 	echo -e "\n$GREEN[$BLUE i$GREEN ]$BLUE Starting anonymous mode:$RESETCOLOR\n"
 
 	systemctl start anonsurfd
 
 	echo -e "$GREEN *$BLUE All traffic was redirected throught Tor\n"
 	echo -e "$GREEN[$BLUE i$GREEN ]$BLUE You are under AnonSurf tunnel$RESETCOLOR\n"
-	sleep 4
+	sleep 8
 	echo -e "Global Anonymous Proxy Activated\n" > /etc/anonsurf/conky_msg
 	ip=`wget -qO- https://api.myip.com | tr -d '{}"' | cut -d ',' -f 1 | cut -d ':' -f 2`
-	echo -e "$ip" >>  /etc/anonsurf/conky_msg
+	echo -e "Public IP : $ip" >>  /etc/anonsurf/conky_msg
 
 }
 
 
 function stop {
+
+	echo "" > /etc/anonsurf/conky_msg
 	echo -e "\n$GREEN[$BLUE i$GREEN ]$BLUE Stopping anonymous mode:$RESETCOLOR\n"
 
 	systemctl stop anonsurfd 
@@ -101,7 +105,7 @@ function stop {
 	sleep 3
 	echo -e "Global Anonymous Proxy Closed - Stop dancing :(\n" > /etc/anonsurf/conky_msg
 	ip=`wget -qO- https://api.myip.com | tr -d '{}"' | cut -d ',' -f 1 | cut -d ':' -f 2`
-	echo -e "$ip" >>  /etc/anonsurf/conky_msg
+	echo -e "Public IP : $ip" >>  /etc/anonsurf/conky_msg
 
 }
 
