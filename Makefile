@@ -15,7 +15,7 @@ install:
 	cp onion.pac $(DESTDIR)/etc/anonsurf/onion.pac
 	ln -s /etc/anonsurf/onion.pac $(DESTDIR)/etc/tor/onion.pac
 	cp torrc $(DESTDIR)/etc/anonsurf/torrc
-	
+	cp torrc $(DESTDIR)/etc/tor
 	cp anondaemon $(DESTDIR)/etc/anonsurf/
 	cp services/anonsurfd.service $(DESTDIR)/lib/systemd/system/
 	# cp services/anonsurfd $(DESTDIR)/etc/init.d/
@@ -28,3 +28,4 @@ install:
 	chmod 644 $(DESTDIR)/etc/anonsurf -R
 	chmod 775 $(DESTDIR)/etc/anonsurf/anondaemon
 	touch /etc/anonsurf/conky_msg
+	systemctl disable tor
